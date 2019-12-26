@@ -47,7 +47,7 @@ public class inimigo : MonoBehaviour
 
     private void move()
     {
-        if (transform.position.x > 7.7)
+        if (transform.position.x > 7.7) // se o inimigo chegar ao canto da tela muda a direção
         {
             right = false;
         }
@@ -56,11 +56,11 @@ public class inimigo : MonoBehaviour
             right = true;
         }
 
-        if (right)
+        if (right) // Andar para baixo e para a direita
         {
             transform.position += (transform.up * Time.deltaTime * -0.2f * velocidade) + (transform.right * Time.deltaTime * 1.5f * velocidade);
         }
-        else
+        else // Andar para baixo e para a esquerda
         {
             transform.position += (transform.up * Time.deltaTime * -0.2f * velocidade) + (transform.right * Time.deltaTime * -1.5f * velocidade);
         }

@@ -39,51 +39,51 @@ public class canhao : MonoBehaviour
     {
         if (ativo)
         {
-            float angulo = Mathf.Sin(Time.time * velocidade) * alcance;
+            float angulo = Mathf.Sin(Time.time * velocidade) * alcance; // movimento do canhão utilizando uuma função senoidal
             canoCanhao.transform.rotation = Quaternion.AngleAxis(angulo, Vector3.forward);
         }
     }
 
     public void atira()
     {
-        if(balas>0 && Time.time > proximoTiro)
+        if(balas>0 && Time.time > proximoTiro) // se houver balas e tiver dado o tempo para o próximo tiro
         {
             proximoTiro = Time.time + taxaDeTiros;
             Instantiate(bala, ponta.transform.position, canoCanhao.transform.rotation);
-            balas--;
-            numBalasTxt.GetComponent<Text>().text = balas.ToString();
+            balas--; // gasta a bala
+            numBalasTxt.GetComponent<Text>().text = balas.ToString(); // atualiza numero de balas na UI
         }
         
     }
 
     public void recarregar()
     {
-        if (balas < totalBalas)
+        if (balas < totalBalas) // se nao estiver cheio
         {
+            // Desativa os botões de atirar e recarregar
             btnRecarregar.GetComponent<Button>().interactable = false;
             btnAtirar.GetComponent<Button>().interactable = false;
-            Invoke("recarrega", tempoRecarga);
+            Invoke("recarrega", tempoRecarga); // chama a função recarrega depois do tempo de recarga
             
         }
     }
 
-    private void recarrega()
+    public void recarrega()
     {
-        btnAtirar.GetComponent<Button>().interactable = true;
+        // Reativa os botões de atirar e recarregar e enche com o numero maximo de balas
+        btnAtirar.GetComponent<Button>().interactable = true; 
         btnRecarregar.GetComponent<Button>().interactable = true;
         balas = totalBalas;
         numBalasTxt.GetComponent<Text>().text = balas.ToString();
     }
 
-    public void ativa()
+    public void ativa() // Ativa o movimento do canhão
     {
-        Debug.Log("ativou");
         ativo = true;
     }
 
-    public void desativa()
+    public void desativa() // Desativa o movimento do canhão
     {
-        Debug.Log("desativou");
         ativo = false;
     }
 }

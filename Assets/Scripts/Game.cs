@@ -35,7 +35,7 @@ public class Game : MonoBehaviour
         {
             tempoSpawn = Time.time + tempoSpawnInimigo;
 
-            // Spawn
+            // Instancia aleatoriamente os inimigos numa posição x entre -7 e 7
             int x = Random.Range(-7, 7);
             Vector3 posicaoSpawn = new Vector3(x, transform.position.y, 0);
             Instantiate(inimigo, posicaoSpawn, gameObject.transform.rotation);
@@ -44,26 +44,42 @@ public class Game : MonoBehaviour
 
     public void reiniciar()
     {
+        // É chamado pelo Botão na UI
+        // Destruir os objetos instanciados, restaurar as balas do canhão, zerar os pontos e pausar o jogo
         pausa();
+        canhao.GetComponent<canhao>().recarrega();
+        pontos = 0;
         GameObject[] inimigos = GameObject.FindGameObjectsWithTag("inimigo");
         foreach (GameObject obj in inimigos)
         {
             Destroy(obj);
         }
-        pontos = 0;
+        GameObject[] obstaculos = GameObject.FindGameObjectsWithTag("obstaculo");
+        foreach (GameObject obj in obstaculos)
+        {
+            Destroy(obj);
+        }
+        GameObject[] balas = GameObject.FindGameObjectsWithTag("bala");
+        foreach (GameObject obj in balas)
+        {
+            Destroy(obj);
+        }
+        btnRecarregar.GetComponent<Button>().interactable = false;
+        btnAtirar.GetComponent<Button>().interactable = false;
+        iniciado = false;
         pontuacao.GetComponent<Text>().text = "0";
     }
 
     public void inicia()
     {
-        if(!iniciado)
+        if(!iniciado) // Instanciar os Obstaculos
         {
             iniciado = true;
             Instantiate(obstaculo, new Vector3(-4.5f, 0.15f, 0), transform.rotation);
             Instantiate(obstaculo, new Vector3(0.4f, 3.5f, 0), transform.rotation);
             Instantiate(obstaculo, new Vector3(5.3f, -0.8f, 0), transform.rotation);
         }
-        
+        // Ativar os botões de atirar e recarregar, ativar o canhão, mudar o icone do botão de play para pause.
         btnAtirar.GetComponent<Button>().interactable = true;
         btnRecarregar.GetComponent<Button>().interactable = true;
         canhao.GetComponent<canhao>().ativa();
@@ -79,6 +95,7 @@ public class Game : MonoBehaviour
 
     public void pausa()
     {
+        // Desativar os botões de atirar e recarregar, desativar o canhão, mudar o icone do botão de pause para play
         btnRecarregar.GetComponent<Button>().interactable = false;
         btnAtirar.GetComponent<Button>().interactable = false;
         canhao.GetComponent<canhao>().desativa();
@@ -92,13 +109,16 @@ public class Game : MonoBehaviour
 
     public void pontua(float qtd)
     {
+        // Adiciona a quantidae de pontos a variável e muda o placar
         pontos += qtd;
         pontuacao.GetComponent<Text>().text = pontos.ToString();
     }
 
     public void iniciarPausarBtn()
     {
-        if(pausado)
+        // É chamado pelo Botão na UI
+        // Mulltipla Função do botão Pausar/Iniciar
+        if (pausado)
         {
             inicia();
         } else
