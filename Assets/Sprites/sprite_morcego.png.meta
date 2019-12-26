@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: eadbd3caff7c8a74b8d424cc7795bb61
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8586442904160796336
+    second: sprite_morcego_0
+  - first:
+      213: 2872718125391120298
+    second: sprite_morcego_1
+  - first:
+      213: -1988845964163773293
+    second: sprite_morcego_2
+  - first:
+      213: -6073745486731179656
+    second: sprite_morcego_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -104,11 +116,95 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: sprite_morcego_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 274
+        width: 118
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a325a7062b375d4aa2b827c0f1c74fe
+      internalID: 8586442904160796336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_morcego_1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 192
+        width: 120
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9ed2e2fa48d062478ee8ae062916501
+      internalID: 2872718125391120298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_morcego_2
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 102
+        width: 118
+        height: 45
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64581f2e63f2922458c2cf20139215cb
+      internalID: -1988845964163773293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite_morcego_3
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 11
+        width: 110
+        height: 44
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ae4e56c6d0853409a0b477bcf839b9
+      internalID: -6073745486731179656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 64b6b70bb4b7e0f449ee8e4e6e7d26cb
     internalID: 0
     vertices: []
     indices: 
