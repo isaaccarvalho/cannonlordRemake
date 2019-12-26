@@ -12,13 +12,15 @@ public class Game : MonoBehaviour
     public GameObject inimigo; // prefab o inimigo para instanciar
     public GameObject btnIniciarPausar; // botão de pause e play do jogo
     public GameObject canhao; // objeto canhao para desativa ou ativar quando pausar
-    public GameObject iniciarSprite, pausarSprite, jogoPausadoTxt;
+    public GameObject iniciarSprite, pausarSprite, jogoPausadoTxt; // Elementos da UI
+    public GameObject obstaculo; // Obstaculos do jogo
 
 
     public float tempoSpawnInimigo = 4f; // intervalo em que cada inimigo é instanciado
     private float tempoSpawn = 0.0f; // variavel auxiliar, tempo em que irá ser instanciado
     private float pontos = 0;
 
+    public bool iniciado = false;
     public bool pausado = true;
     // Start is called before the first frame update
     void Start()
@@ -49,11 +51,18 @@ public class Game : MonoBehaviour
             Destroy(obj);
         }
         pontos = 0;
-        pontua(0);
+        pontuacao.GetComponent<Text>().text = "0";
     }
 
     public void inicia()
     {
+        if(!iniciado)
+        {
+            iniciado = true;
+            Instantiate(obstaculo, new Vector3(-4.5f, 0.15f, 0), transform.rotation);
+            Instantiate(obstaculo, new Vector3(0.4f, 3.5f, 0), transform.rotation);
+            Instantiate(obstaculo, new Vector3(5.3f, -0.8f, 0), transform.rotation);
+        }
         
         btnAtirar.GetComponent<Button>().interactable = true;
         btnRecarregar.GetComponent<Button>().interactable = true;

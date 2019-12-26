@@ -39,7 +39,10 @@ public class inimigo : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject.Find("GameController").GetComponent<Game>().pontua(10);
+        if (!GameObject.Find("GameController").GetComponent<Game>().pausado)
+        {
+            GameObject.Find("GameController").GetComponent<Game>().pontua(10);
+        }
     }
 
     private void move()
