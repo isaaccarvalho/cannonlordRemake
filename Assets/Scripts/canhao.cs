@@ -12,6 +12,7 @@ public class canhao : MonoBehaviour
     public int balas = 5; // balas do canhão
     public float taxaDeTiros = 0.2f; // tempo de espera para dar o próximo tiro
     public float tempoRecarga = 1f; // tempo de espera para recarregar o canhão
+    private bool ativo;
 
     private float proximoTiro = 0.0f;
 
@@ -25,7 +26,7 @@ public class canhao : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ativo = false;
     }
 
     // Update is called once per frame
@@ -36,8 +37,11 @@ public class canhao : MonoBehaviour
 
     void gira()
     {
-        float angulo = Mathf.Sin(Time.time * velocidade) * alcance;
-        canoCanhao.transform.rotation = Quaternion.AngleAxis(angulo, Vector3.forward);
+        if (ativo)
+        {
+            float angulo = Mathf.Sin(Time.time * velocidade) * alcance;
+            canoCanhao.transform.rotation = Quaternion.AngleAxis(angulo, Vector3.forward);
+        }
     }
 
     public void atira()
@@ -69,5 +73,17 @@ public class canhao : MonoBehaviour
         btnRecarregar.GetComponent<Button>().interactable = true;
         balas = totalBalas;
         numBalasTxt.GetComponent<Text>().text = balas.ToString();
+    }
+
+    public void ativa()
+    {
+        Debug.Log("ativou");
+        ativo = true;
+    }
+
+    public void desativa()
+    {
+        Debug.Log("desativou");
+        ativo = false;
     }
 }

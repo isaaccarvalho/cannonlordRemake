@@ -8,6 +8,7 @@ public class inimigo : MonoBehaviour
     public float vida = 10f; // quantidade de vida do inimigo
 
     private bool right = true; // a direção que o morcego está se movendo
+    private bool ativo = false;
     
     // Start is called before the first frame update
     void Start()
@@ -18,22 +19,13 @@ public class inimigo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(transform.position.x>7.7)
+        if(!GameObject.Find("GameController").GetComponent<Game>().pausado)
         {
-            right = false;
-        } else if(transform.position.x < -7.7)
-        {
-            right = true;
-        }
+            move();
 
-        if(right)
-        {
-            transform.position += (transform.up * Time.deltaTime * -0.2f * velocidade) + (transform.right * Time.deltaTime * 1.5f * velocidade);
-        } else
-        {
-            transform.position += (transform.up * Time.deltaTime * -0.2f) + (transform.right * Time.deltaTime * -1.5f);
         }
+        
+        
     }
 
     public void tomaDano(float dano)
@@ -48,6 +40,27 @@ public class inimigo : MonoBehaviour
     private void OnDestroy()
     {
         GameObject.Find("GameController").GetComponent<Game>().pontua(10);
+    }
+
+    private void move()
+    {
+        if (transform.position.x > 7.7)
+        {
+            right = false;
+        }
+        else if (transform.position.x < -7.7)
+        {
+            right = true;
+        }
+
+        if (right)
+        {
+            transform.position += (transform.up * Time.deltaTime * -0.2f * velocidade) + (transform.right * Time.deltaTime * 1.5f * velocidade);
+        }
+        else
+        {
+            transform.position += (transform.up * Time.deltaTime * -0.2f * velocidade) + (transform.right * Time.deltaTime * -1.5f * velocidade);
+        }
     }
 
 }

@@ -7,7 +7,13 @@ public class Game : MonoBehaviour
 {
 
     public GameObject pontuacao; // elemento da UI da pontuação
+    public GameObject btnRecarregar; // botão de recarregar o canhao
+    public GameObject btnAtirar; // botão para atirar o canhão
     public GameObject inimigo; // prefab o inimigo para instanciar
+    public GameObject btnIniciarPausar; // botão de pause e play do jogo
+    public GameObject canhao; // objeto canhao para desativa ou ativar quando pausar
+    public GameObject iniciarSprite, pausarSprite, jogoPausadoTxt;
+
 
     public float tempoSpawnInimigo = 4f; // intervalo em que cada inimigo é instanciado
     private float tempoSpawn = 0.0f; // variavel auxiliar, tempo em que irá ser instanciado
@@ -17,7 +23,7 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pausa();
     }
 
     // Update is called once per frame
@@ -42,25 +48,53 @@ public class Game : MonoBehaviour
         {
             Destroy(obj);
         }
+        pontos = 0;
+        pontua(0);
     }
 
     public void inicia()
     {
+        
+        btnAtirar.GetComponent<Button>().interactable = true;
+        btnRecarregar.GetComponent<Button>().interactable = true;
+        canhao.GetComponent<canhao>().ativa();
+        pausarSprite.SetActive(true);
+        iniciarSprite.SetActive(false);
+        jogoPausadoTxt.SetActive(false);
         pausado = false;
-        GameObject.Find("Canhao").GetComponent<canhao>().enabled = true;
-        GameObject.Find("Bala").GetComponent<bala>().enabled = true;
+        Time.timeScale = 1;
+
+
+
     }
 
     public void pausa()
     {
+        btnRecarregar.GetComponent<Button>().interactable = false;
+        btnAtirar.GetComponent<Button>().interactable = false;
+        canhao.GetComponent<canhao>().desativa();
+        pausarSprite.SetActive(false);
+        iniciarSprite.SetActive(true);
+        jogoPausadoTxt.SetActive(true);
         pausado = true;
-        GameObject.Find("Canhao").GetComponent<canhao>().enabled = false;
-        GameObject.Find("Bala").GetComponent<bala>().enabled = false;
+        Time.timeScale = 0;
+
     }
 
     public void pontua(float qtd)
     {
         pontos += qtd;
         pontuacao.GetComponent<Text>().text = pontos.ToString();
+    }
+
+    public void iniciarPausarBtn()
+    {
+        if(pausado)
+        {
+            inicia();
+        } else
+        {
+            pausa();
+        }
     }
 }
