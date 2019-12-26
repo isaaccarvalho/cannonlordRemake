@@ -45,4 +45,9 @@ public class inimigo : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        GameObject.Find("GameController").GetComponent<Game>().pontua(10);
+    }
+
 }
