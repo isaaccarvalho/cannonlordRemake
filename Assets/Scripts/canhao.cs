@@ -20,6 +20,7 @@ public class canhao : MonoBehaviour
     public GameObject numBalasTxt; // Componente UI para mostrar quantidadde de balas
     public GameObject btnRecarregar; // botão de recarregar o canhao
     public GameObject btnAtirar; // botão para atirar o canhão
+    public GameObject bala; // Prefab da Bala do canhão
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class canhao : MonoBehaviour
         if(balas>0 && Time.time > proximoTiro)
         {
             proximoTiro = Time.time + taxaDeTiros;
+            Instantiate(bala, ponta.transform.position, canoCanhao.transform.rotation);
             balas--;
             numBalasTxt.GetComponent<Text>().text = balas.ToString();
         }
