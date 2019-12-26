@@ -31,7 +31,13 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time > tempoSpawn && !pausado)
+        // Esc para sair do jogo
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
+
+        if (Time.time > tempoSpawn && !pausado)
         {
             tempoSpawn = Time.time + tempoSpawnInimigo;
 
