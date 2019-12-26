@@ -26,11 +26,16 @@ public class bala : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "inimigo" || collision.gameObject.tag == "obstaculo")
+        if (collision.gameObject.tag == "inimigo")
+        {
+            collision.gameObject.GetComponent<inimigo>().tomaDano(10);
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.tag == "obstaculo")
         {
             Destroy(gameObject);
         }
-        Debug.Log("colidiu");
+            
     }
 
 }
